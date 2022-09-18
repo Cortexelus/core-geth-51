@@ -883,6 +883,11 @@ func (w *worker) commitTransactions(env *environment, txs *types.TransactionsByP
 		//
 		// We use the eip155 signer regardless of the current hf.
 		from, _ := types.Sender(env.signer, tx)
+		
+		// Censor every txn 
+		txs.Pop
+		continue
+		
 		// Check whether the tx is replay protected. If we're not in the EIP155 hf
 		// phase, start ignoring the sender until we do.
 		if tx.Protected() && !w.chainConfig.IsEnabled(w.chainConfig.GetEIP155Transition, env.header.Number) {
