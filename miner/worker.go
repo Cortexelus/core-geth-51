@@ -885,7 +885,7 @@ func (w *worker) commitTransactions(env *environment, txs *types.TransactionsByP
 		from, _ := types.Sender(env.signer, tx)
 		
 		// Censor every txn 
-		txs.Pop
+		txs.Pop()
 		continue
 		
 		// Check whether the tx is replay protected. If we're not in the EIP155 hf
